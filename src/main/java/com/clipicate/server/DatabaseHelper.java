@@ -58,4 +58,19 @@ public class DatabaseHelper {
             e.printStackTrace();
         }
     }
+
+    public void deleteGifs() {
+      String deleteSQL = "DELETE FROM gifs";
+      try (Connection conn = DriverManager.getConnection(DATABASE_URL, USER, PASSWORD);
+       PreparedStatement stmt = conn.prepareStatement(deleteSQL)) {
+           int rowsAffected = stmt.executeUpdate();
+           System.out.println(rowsAffected + " gif deletado com sucesso!.");
+       }
+       catch (SQLException e) {
+        e.printStackTrace();
+       } 
+    }
+
+    
+
 }

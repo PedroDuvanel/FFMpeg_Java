@@ -1,6 +1,5 @@
 package com.clipicate.server;
 import java.io.File;
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import net.bramp.ffmpeg.*;
