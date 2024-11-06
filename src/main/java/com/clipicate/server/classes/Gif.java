@@ -15,19 +15,20 @@ public class Gif {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String name;
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Column(nullable = false)
-    private String path;
+    private String description;
+
+    
+
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "file64", columnDefinition = "LONGBLOB")
+    private byte[] file64;
 
     @Column(nullable = false)
     private Timestamp creation_date;
-
-    public Gif(int i, String name, String path, Timestamp creation_date) {
-        this.name = name;
-        this.path = path;
-        this.creation_date = creation_date;
-    }
-
 }

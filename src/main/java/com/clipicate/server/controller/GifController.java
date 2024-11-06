@@ -12,14 +12,6 @@ public class GifController{
     @Autowired
     private GifService gifService;
 
-    // public GifController() {
-    //     this.gifService = new GifService();
-    // }
-
-    // public void addGif(String name, String path) {
-    //     Gif gif = new Gif(0, name, path, null); 
-    // }
-
     @GetMapping
     public ResponseEntity<List<Gif>> getAll(){
         List<Gif> gifs = gifService.getAllGifs();
