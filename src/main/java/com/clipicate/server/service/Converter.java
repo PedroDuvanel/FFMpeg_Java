@@ -1,4 +1,4 @@
-package com.clipicate.server;
+package com.clipicate.server.service;
 
 import java.io.*;
 import javax.xml.bind.DatatypeConverter;

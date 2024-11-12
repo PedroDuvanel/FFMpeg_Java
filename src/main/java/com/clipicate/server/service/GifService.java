@@ -1,5 +1,5 @@
 package com.clipicate.server.service;
-import com.clipicate.server.Converter;
+import com.clipicate.server.service.Converter;
 import com.clipicate.server.classes.Gif;
 import com.clipicate.server.repository.GifRepository;
 import lombok.Data;
@@ -33,11 +33,11 @@ public class GifService {
 
     public void addGif(Gif gif) {
         byte[] gifConverted =
-        converter.toBase64(
-            converter.fromVideoToGif(
-                converter.fromBase64(gif.getFile64())
-            )
-        );
+            converter.toBase64(
+                converter.fromVideoToGif(
+                    converter.fromBase64(gif.getFile64())
+                )
+            );
         gif.setFile64(gifConverted);
         gifRepository.save(gif);
     }
