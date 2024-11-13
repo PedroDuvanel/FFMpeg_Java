@@ -1,6 +1,9 @@
 package com.clipicate.server.classes;
 
 import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Data;
@@ -22,13 +25,12 @@ public class Gif {
     @Column(nullable = false)
     private String description;
 
-    
-
     @Lob
     @Basic(fetch = FetchType.LAZY)
-    @Column(name = "file64", columnDefinition = "LONGBLOB")
+    @Column(name = "file64")
     private byte[] file64;
 
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
     private Timestamp creation_date;
 }

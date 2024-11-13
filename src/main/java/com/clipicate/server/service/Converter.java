@@ -35,12 +35,12 @@ public class Converter {
         return dataBytes;
     }
 
-    public void fromVideoToGif(File videoFile) {
+    public File fromVideoToGif(File videoFile) {
 
+        String ffmpegPath = "src/main/resources/ffmpeg.exe";
+        String ffprobePath = "src/main/resources/ffprobe.exe";
+        
         try {
-            String ffmpegPath = "src/main/resources/ffmpeg.exe";
-            String ffprobePath = "src/main/resources/ffprobe.exe";
-
             // File videoFile = new File(path);
             
             VideoConverter videoConverter = new VideoConverter(ffmpegPath, ffprobePath);
@@ -49,14 +49,14 @@ public class Converter {
 
             if (gifFile != null && gifFile.exists()) {
                 System.out.println("GIF criado: " + gifFile.getAbsolutePath());
+                return gifFile;
             } else {
-                System.out.println("Falha ao criar GIF");
+                throw new RuntimeException("Falha ao criar GIF");
             }
 
-            
-            
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException ("Erro durante a conversão");
         }
 
     }

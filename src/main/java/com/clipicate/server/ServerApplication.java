@@ -28,9 +28,9 @@ public class ServerApplication {
             e.printStackTrace();
         }
 
-        Converter.fromVideoToGif(
-            Converter.fromBase64(data)
-        );
+        // Converter.fromVideoToGif(
+        //     Converter.fromBase64(data)
+        // );
 
     }
 }
