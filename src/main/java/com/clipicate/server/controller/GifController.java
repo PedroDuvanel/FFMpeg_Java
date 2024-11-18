@@ -8,7 +8,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("api/gif")
 public class GifController{
 
     @Autowired

@@ -9,7 +9,7 @@ import lombok.Data;
 @EqualsAndHashCode
 @Entity
 @Data
-@Table(name = "User")
+@Table(name = "Users")
 public class User {
 
     @Id
