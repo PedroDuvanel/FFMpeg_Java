@@ -1,5 +1,4 @@
 package com.clipicate.server.service;
-import com.clipicate.server.service.Converter;
 import com.clipicate.server.classes.Gif;
 import com.clipicate.server.repository.GifRepository;
 import lombok.Data;
@@ -16,8 +15,8 @@ import net.bramp.ffmpeg.*;
 import net.bramp.ffmpeg.builder.*;
 import net.bramp.ffmpeg.probe.*;
 
-@Data
 @Service
+@Data
 public class GifService {
 
     private final FFmpeg ffmpeg;
@@ -62,7 +61,22 @@ public class GifService {
         File videoFile = convertMultipartFileToFile(file);
 
         // Converter pra gif
-        File gifFile = converter.fromVideoToGif(videoFile);
+        FFmpegProbeResult probeResult = ffprobe.probe(videoFile.getAbsolutePath());
+        File gifFile = File.createTempFile("upload", ".gif");
+        FFmpegBuilder builder = new FFmpegBuilder()
+            .setInput(probeResult.getFormat().filename)
+            .overrideOutputFiles(true)
+            .addOutput(gifFile.getAbsolutePath())
+            .setFormat("gif")
+            .done();
+            // .setInput(probeResult) 
+            // .addOutput(gifFile.getAbsolutePath()) 
+            // .setFormat("gif") 
+            // .setFrameRate(15) 
+            // .setSize(640, 480) 
+            // .done();
+
+        ffmpeg.run(builder);
 
         // Converte o gif para salvar no banco
         byte[] gifData = converter.toBase64(gifFile);

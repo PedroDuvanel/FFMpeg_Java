@@ -3,6 +3,9 @@ package com.clipicate.server.service;
 import java.io.*;
 import javax.xml.bind.DatatypeConverter;
 
+import org.springframework.stereotype.Service;
+
+@Servicegit 
 public class Converter {
 
     public File fromBase64(String data) {
