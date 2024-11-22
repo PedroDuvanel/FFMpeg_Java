@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.beans.factory.annotation.Autowired;
 
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("api/gif")
 public class GifController{
@@ -37,6 +38,7 @@ public class GifController{
 
     @PostMapping("/create-gif")
     public ResponseEntity<?> createNewGif(@RequestParam("file") MultipartFile file){
+        System.out.println("requisição feita");
         try{
             Gif createdGif = gifService.createNewGif(file);
             return ResponseEntity.ok(createdGif);
@@ -50,4 +52,9 @@ public class GifController{
         gifService.deleteGif(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/hello")
+    public ResponseEntity<String> hello(){
+        return ResponseEntity.ok("hello");
+    } 
 }

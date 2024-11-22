@@ -5,7 +5,7 @@ import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.stereotype.Service;
 
-@Servicegit 
+@Service 
 public class Converter {
 
     public File fromBase64(String data) {
