@@ -25,9 +25,7 @@ public class Gif {
     @Column(nullable = false)
     private String description;
 
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
-    @Column(name = "file64")
+    @Column(name = "file64", columnDefinition = "BYTEA")
     private byte[] file64;
 
     @Column(nullable = false, updatable = false)

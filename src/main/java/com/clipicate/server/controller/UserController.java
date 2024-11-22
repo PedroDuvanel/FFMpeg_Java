@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.clipicate.server.classes.Gif;
+
 import com.clipicate.server.classes.User;
 import com.clipicate.server.service.UserService;
 

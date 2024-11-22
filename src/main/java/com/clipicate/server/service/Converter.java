@@ -12,7 +12,7 @@ public class Converter {
 
         byte[] dataBytes = DatatypeConverter.parseBase64Binary(data);
 
-        String path = "src/main/resources/novovideo.mp4";
+        String path = "src/main/resources/novovideo.mov";
         File file = new File(path);
         
         try (OutputStream outputStream = new BufferedOutputStream(new FileOutputStream(file))) {

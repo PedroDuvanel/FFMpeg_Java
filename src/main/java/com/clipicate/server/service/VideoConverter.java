@@ -19,7 +19,7 @@ public class VideoConverter {
     public File converter(File videoFile) {
         try {
             String inputFile = videoFile.getPath();
-            String outputFile = inputFile.replace(".mp4", ".gif");
+            String outputFile = inputFile.replace(".mov", ".gif");
 
             FFmpegProbeResult probeResult = ffprobe.probe(inputFile);
 

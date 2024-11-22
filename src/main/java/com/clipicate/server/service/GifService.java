@@ -6,7 +6,10 @@ import lombok.Data;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import net.bramp.ffmpeg.*;
 import net.bramp.ffmpeg.builder.*;
 import net.bramp.ffmpeg.probe.*;
+
 
 @Service
 @Data
@@ -35,17 +39,6 @@ public class GifService {
     public List<Gif> getAllGifs() {
         return gifRepository.findAll();
     }
-
-    // public void addGif(Gif gif) {
-    //     byte[] gifConverted =
-    //         converter.toBase64(
-    //             converter.fromVideoToGif(
-    //                 converter.fromBase64(gif.getFile64())
-    //             )
-    //         );
-    //     gif.setFile64(gifConverted);
-    //     gifRepository.save(gif);
-    // }
 
     public File convertMultipartFileToFile(MultipartFile file) throws IOException {
         File convFile = File.createTempFile("upload", file.getOriginalFilename());
@@ -69,17 +62,11 @@ public class GifService {
             .addOutput(gifFile.getAbsolutePath())
             .setFormat("gif")
             .done();
-            // .setInput(probeResult) 
-            // .addOutput(gifFile.getAbsolutePath()) 
-            // .setFormat("gif") 
-            // .setFrameRate(15) 
-            // .setSize(640, 480) 
-            // .done();
 
         ffmpeg.run(builder);
 
         // Converte o gif para salvar no banco
-        byte[] gifData = converter.toBase64(gifFile);
+        byte[] gifData = Files.readAllBytes(gifFile.toPath());
 
         // Chama a camada de repository 
         Gif gif = new Gif();
