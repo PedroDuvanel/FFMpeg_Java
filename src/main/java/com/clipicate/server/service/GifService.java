@@ -39,7 +39,7 @@ public class GifService {
     public List<Gif> getAllGifs() {
         return gifRepository.findAll();
     }
-
+    
     public File convertMultipartFileToFile(MultipartFile file) throws IOException {
         File convFile = File.createTempFile("upload", file.getOriginalFilename());
         try (FileOutputStream fos = new FileOutputStream(convFile)) {
@@ -72,9 +72,11 @@ public class GifService {
         Gif gif = new Gif();
         gif.setDescription("");
         gif.setFile64(gifData);
-
         return gifRepository.save(gif);
+
     }
+
+
 
     public void deleteGif(Long id){
         Gif gif = getById(id);

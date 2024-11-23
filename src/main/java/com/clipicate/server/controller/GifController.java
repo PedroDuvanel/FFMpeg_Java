@@ -30,6 +30,16 @@ public class GifController{
         return ResponseEntity.ok(gif);
     }
 
+    @GetMapping("/gifs")
+    public ResponseEntity<List<Gif>> getAllGifs(){
+        List<Gif> gifs = gifService.getAllGifs();
+        if(gifs == null){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(gifs);
+    }
+
+
     // @PostMapping
     // public ResponseEntity<?> create(@RequestBody Gif gif){
     //     gifService.addGif(gif);
